@@ -1,0 +1,19 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "A GitHub Action for bidirectional synchronization between GitHub issues and local markdown files with intelligent conflict resolution.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.1",
+    "front-matter": "^4.0.2",
+    "fs-extra": "^11.3.0",
+    "js-yaml": "^4.1.0"
+  }
+}

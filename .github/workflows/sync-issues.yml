@@ -1,0 +1,26 @@
+name: Sync GitHub Issues
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  workflow_dispatch:  # Manual trigger
+  issues:
+    types: [opened, edited, closed, reopened]
+
+jobs:
+  sync-issues:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Sync GitHub Issues
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          sync-direction: 'both'
+          issues-path: '.github/issues'
+          conflict-strategy: 'create-files'
+          debug: 'false'

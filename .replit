@@ -1,0 +1,36 @@
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "GitHub Issues Sync"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "test_github_action"
+
+[[workflows.workflow]]
+name = "GitHub Issues Sync"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install && npm install @actions/core @actions/github fs-extra js-yaml front-matter && node src/index.js"
+
+[[workflows.workflow]]
+name = "test_github_action"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm init -y && npm install @actions/core @actions/github fs-extra js-yaml front-matter && node src/index.js"
