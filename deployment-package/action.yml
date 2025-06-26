@@ -1,0 +1,39 @@
+name: 'GitHub Issues Sync'
+description: 'Sync issues between GitHub and local markdown files'
+author: 'GitHub Issues Sync'
+
+inputs:
+  github-token:
+    description: 'GitHub token for API access'
+    required: true
+    default: ${{ github.token }}
+  sync-direction:
+    description: 'Direction to sync (pull, push, or both)'
+    required: false
+    default: 'both'
+  issues-path:
+    description: 'Path to issues directory'
+    required: false
+    default: '.github/issues'
+  conflict-strategy:
+    description: 'How to handle conflicts (fail, create-files, or overwrite)'
+    required: false
+    default: 'create-files'
+  debug:
+    description: 'Enable debug logging'
+    required: false
+    default: 'false'
+
+outputs:
+  synced-count:
+    description: 'Number of issues synced'
+  conflicts-count:
+    description: 'Number of conflicts detected'
+
+runs:
+  using: 'node20'
+  main: 'src/index.js'
+
+branding:
+  icon: 'git-pull-request'
+  color: 'blue'
